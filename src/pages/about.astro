@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<p>Welcome. This site was created on <time datetime="2026-08-25T00:00">August 25, 2026, 12:00 AM</time> in 2 hours. Please excuse how barebones it is. Also Astro.js is cool</p>
+</Layout>
+
+<style lang="scss">
+	@use "../assets/colours.scss" as *;
+
+	main.container {
+		display: flex;
+		flex-direction: column;
+		place-items: center;
+		text-align: center;
+		font-size: 0.8rem;
+		padding: 1rem;
+	}
+</style>

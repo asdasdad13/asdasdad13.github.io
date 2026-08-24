@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/sketches/*');
+const images = await Promise.all(
+  Object.entries(imageFiles)
+    .sort(([pathA], [pathB]) => pathB.localeCompare(pathA))
+    .map(([, importer]) => importer().then((mod) => mod.default))
+);
+---
+
+<Layout>
+	<p>A hobby of mine is to draw, which I've been doing since 2011. I started urban sketching in 2026.</p>
+	<p>These are sorted from newest to oldest.</p>
+	<div class="image-gallery">
+		{images.map((img) => (
+			<Image src={img} alt="sketch"/>
+		))}
+	</div>
+</Layout>
+
+<style lang="scss">
+	.image-gallery {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		gap: 1rem;
+
+		@media (min-width: 768px) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>

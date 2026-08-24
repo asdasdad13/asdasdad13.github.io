@@ -1,0 +1,45 @@
+---
+const { href } = Astro.props;
+const currentPath = Astro.url.pathname;
+const links = [
+    {
+        href: "/",
+        title: "/whoami"
+    },
+    {
+        href: "/about",
+        title: "/about"
+    },
+    {
+        href: "/illust",
+        title: "/illust"
+    },
+];
+---
+
+<nav>
+  <ul>
+    {links.map((link) => {
+        const isCurrent = currentPath === link.href;
+        
+        return (
+            <li>
+                <a
+                    href={isCurrent ? href : link.href}
+                    aria-current={isCurrent ? "page" : undefined}
+                    class:list={[{ "disabled": isCurrent }]}
+                >
+                    {link.title}
+                </a>
+            </li>    
+        );
+    })}
+  </ul>
+</nav>
+
+<style lang="scss">
+    nav {
+        justify-self: center;
+        font-size: smaller;
+    }
+</style>
