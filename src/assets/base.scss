@@ -1,0 +1,23 @@
+@use "colours.scss" as *;
+
+:root {
+  /* Tells the browser the page supports both themes */
+  color-scheme: light dark; 
+}
+
+body {
+  background-color: light-dark($bg-light, $bg-dark);
+  color: light-dark($body-light, $body-dark);
+  max-width: 100vw;
+  min-height: 100vh;
+}
+
+.disabled {
+  color: light-dark($muted-light, $muted-dark);
+
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
